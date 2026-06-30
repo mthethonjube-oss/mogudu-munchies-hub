@@ -4,13 +4,14 @@ import { useCart } from "@/lib/cart";
 import { useAuth } from "@/lib/auth";
 import { motion, AnimatePresence } from "framer-motion";
 
-const navItems = [
+type NavItem = { to: string; label: string; icon: typeof Home; exact?: boolean };
+const navItems: NavItem[] = [
   { to: "/", label: "Home", icon: Home, exact: true },
   { to: "/menu", label: "Menu", icon: UtensilsCrossed },
   { to: "/specials", label: "Specials", icon: CalendarDays },
   { to: "/orders", label: "Orders", icon: ShoppingBag },
   { to: "/account", label: "Account", icon: User },
-] as const;
+];
 
 export function Header() {
   const { count } = useCart();
