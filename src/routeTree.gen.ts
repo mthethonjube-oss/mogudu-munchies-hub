@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SpecialsRouteImport } from './routes/specials'
 import { Route as MenuRouteImport } from './routes/menu'
+import { Route as CartRouteImport } from './routes/cart'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MenuItemIdRouteImport } from './routes/menu.$itemId'
@@ -23,6 +24,11 @@ const SpecialsRoute = SpecialsRouteImport.update({
 const MenuRoute = MenuRouteImport.update({
   id: '/menu',
   path: '/menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -44,6 +50,7 @@ const MenuItemIdRoute = MenuItemIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
   '/menu': typeof MenuRouteWithChildren
   '/specials': typeof SpecialsRoute
   '/menu/$itemId': typeof MenuItemIdRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
   '/menu': typeof MenuRouteWithChildren
   '/specials': typeof SpecialsRoute
   '/menu/$itemId': typeof MenuItemIdRoute
@@ -59,21 +67,30 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
   '/menu': typeof MenuRouteWithChildren
   '/specials': typeof SpecialsRoute
   '/menu/$itemId': typeof MenuItemIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/menu' | '/specials' | '/menu/$itemId'
+  fullPaths: '/' | '/auth' | '/cart' | '/menu' | '/specials' | '/menu/$itemId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/menu' | '/specials' | '/menu/$itemId'
-  id: '__root__' | '/' | '/auth' | '/menu' | '/specials' | '/menu/$itemId'
+  to: '/' | '/auth' | '/cart' | '/menu' | '/specials' | '/menu/$itemId'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/cart'
+    | '/menu'
+    | '/specials'
+    | '/menu/$itemId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
+  CartRoute: typeof CartRoute
   MenuRoute: typeof MenuRouteWithChildren
   SpecialsRoute: typeof SpecialsRoute
 }
@@ -92,6 +109,13 @@ declare module '@tanstack/react-router' {
       path: '/menu'
       fullPath: '/menu'
       preLoaderRoute: typeof MenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -131,6 +155,7 @@ const MenuRouteWithChildren = MenuRoute._addFileChildren(MenuRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
+  CartRoute: CartRoute,
   MenuRoute: MenuRouteWithChildren,
   SpecialsRoute: SpecialsRoute,
 }

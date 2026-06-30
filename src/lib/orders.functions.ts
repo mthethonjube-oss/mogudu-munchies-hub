@@ -91,7 +91,7 @@ export const updateOrderStatus = createServerFn({ method: "POST" })
     const { data: isAdmin } = await supabase.rpc("has_role", { _user_id: userId, _role: "admin" });
     if (!isAdmin) throw new Error("Forbidden");
 
-    const patch: Record<string, any> = { status: data.status };
+    const patch: { status: typeof data.status; eta_at?: string } = { status: data.status };
     if (data.eta_minutes) patch.eta_at = new Date(Date.now() + data.eta_minutes * 60_000).toISOString();
     const { error } = await supabase.from("orders").update(patch).eq("id", data.orderId);
     if (error) throw error;
