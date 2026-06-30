@@ -10,15 +10,24 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SpecialsRouteImport } from './routes/specials'
+import { Route as OrdersRouteImport } from './routes/orders'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AccountRouteImport } from './routes/account'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OrdersOrderIdRouteImport } from './routes/orders.$orderId'
 import { Route as MenuItemIdRouteImport } from './routes/menu.$itemId'
 
 const SpecialsRoute = SpecialsRouteImport.update({
   id: '/specials',
   path: '/specials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersRoute = OrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MenuRoute = MenuRouteImport.update({
@@ -36,10 +45,25 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersOrderIdRoute = OrdersOrderIdRouteImport.update({
+  id: '/$orderId',
+  path: '/$orderId',
+  getParentRoute: () => OrdersRoute,
 } as any)
 const MenuItemIdRoute = MenuItemIdRouteImport.update({
   id: '/$itemId',
@@ -49,49 +73,88 @@ const MenuItemIdRoute = MenuItemIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/menu': typeof MenuRouteWithChildren
+  '/orders': typeof OrdersRouteWithChildren
   '/specials': typeof SpecialsRoute
   '/menu/$itemId': typeof MenuItemIdRoute
+  '/orders/$orderId': typeof OrdersOrderIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/menu': typeof MenuRouteWithChildren
+  '/orders': typeof OrdersRouteWithChildren
   '/specials': typeof SpecialsRoute
   '/menu/$itemId': typeof MenuItemIdRoute
+  '/orders/$orderId': typeof OrdersOrderIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/menu': typeof MenuRouteWithChildren
+  '/orders': typeof OrdersRouteWithChildren
   '/specials': typeof SpecialsRoute
   '/menu/$itemId': typeof MenuItemIdRoute
+  '/orders/$orderId': typeof OrdersOrderIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/cart' | '/menu' | '/specials' | '/menu/$itemId'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/cart' | '/menu' | '/specials' | '/menu/$itemId'
-  id:
-    | '__root__'
+  fullPaths:
     | '/'
+    | '/account'
+    | '/admin'
     | '/auth'
     | '/cart'
     | '/menu'
+    | '/orders'
     | '/specials'
     | '/menu/$itemId'
+    | '/orders/$orderId'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/account'
+    | '/admin'
+    | '/auth'
+    | '/cart'
+    | '/menu'
+    | '/orders'
+    | '/specials'
+    | '/menu/$itemId'
+    | '/orders/$orderId'
+  id:
+    | '__root__'
+    | '/'
+    | '/account'
+    | '/admin'
+    | '/auth'
+    | '/cart'
+    | '/menu'
+    | '/orders'
+    | '/specials'
+    | '/menu/$itemId'
+    | '/orders/$orderId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccountRoute: typeof AccountRoute
+  AdminRoute: typeof AdminRoute
   AuthRoute: typeof AuthRoute
   CartRoute: typeof CartRoute
   MenuRoute: typeof MenuRouteWithChildren
+  OrdersRoute: typeof OrdersRouteWithChildren
   SpecialsRoute: typeof SpecialsRoute
 }
 
@@ -102,6 +165,13 @@ declare module '@tanstack/react-router' {
       path: '/specials'
       fullPath: '/specials'
       preLoaderRoute: typeof SpecialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders': {
+      id: '/orders'
+      path: '/orders'
+      fullPath: '/orders'
+      preLoaderRoute: typeof OrdersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/menu': {
@@ -125,12 +195,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/orders/$orderId': {
+      id: '/orders/$orderId'
+      path: '/$orderId'
+      fullPath: '/orders/$orderId'
+      preLoaderRoute: typeof OrdersOrderIdRouteImport
+      parentRoute: typeof OrdersRoute
     }
     '/menu/$itemId': {
       id: '/menu/$itemId'
@@ -152,11 +243,25 @@ const MenuRouteChildren: MenuRouteChildren = {
 
 const MenuRouteWithChildren = MenuRoute._addFileChildren(MenuRouteChildren)
 
+interface OrdersRouteChildren {
+  OrdersOrderIdRoute: typeof OrdersOrderIdRoute
+}
+
+const OrdersRouteChildren: OrdersRouteChildren = {
+  OrdersOrderIdRoute: OrdersOrderIdRoute,
+}
+
+const OrdersRouteWithChildren =
+  OrdersRoute._addFileChildren(OrdersRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccountRoute: AccountRoute,
+  AdminRoute: AdminRoute,
   AuthRoute: AuthRoute,
   CartRoute: CartRoute,
   MenuRoute: MenuRouteWithChildren,
+  OrdersRoute: OrdersRouteWithChildren,
   SpecialsRoute: SpecialsRoute,
 }
 export const routeTree = rootRouteImport
