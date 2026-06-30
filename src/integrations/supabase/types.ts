@@ -14,16 +14,322 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      categories: {
+        Row: {
+          id: string
+          name: string
+          slug: string
+          sort_order: number
+        }
+        Insert: {
+          id?: string
+          name: string
+          slug: string
+          sort_order?: number
+        }
+        Update: {
+          id?: string
+          name?: string
+          slug?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      driver_locations: {
+        Row: {
+          driver_id: string
+          heading: number | null
+          lat: number
+          lng: number
+          updated_at: string
+        }
+        Insert: {
+          driver_id: string
+          heading?: number | null
+          lat: number
+          lng: number
+          updated_at?: string
+        }
+        Update: {
+          driver_id?: string
+          heading?: number | null
+          lat?: number
+          lng?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      menu_items: {
+        Row: {
+          category_id: string | null
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          is_available: boolean
+          is_featured: boolean
+          name: string
+          price: number
+        }
+        Insert: {
+          category_id?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_available?: boolean
+          is_featured?: boolean
+          name: string
+          price: number
+        }
+        Update: {
+          category_id?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_available?: boolean
+          is_featured?: boolean
+          name?: string
+          price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "menu_items_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notifications: {
+        Row: {
+          body: string | null
+          created_at: string
+          id: string
+          link: string | null
+          read: boolean
+          title: string
+          user_id: string
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          link?: string | null
+          read?: boolean
+          title: string
+          user_id: string
+        }
+        Update: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          link?: string | null
+          read?: boolean
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      order_items: {
+        Row: {
+          id: string
+          menu_item_id: string | null
+          name: string
+          notes: string | null
+          order_id: string
+          qty: number
+          unit_price: number
+        }
+        Insert: {
+          id?: string
+          menu_item_id?: string | null
+          name: string
+          notes?: string | null
+          order_id: string
+          qty: number
+          unit_price: number
+        }
+        Update: {
+          id?: string
+          menu_item_id?: string | null
+          name?: string
+          notes?: string | null
+          order_id?: string
+          qty?: number
+          unit_price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_menu_item_id_fkey"
+            columns: ["menu_item_id"]
+            isOneToOne: false
+            referencedRelation: "menu_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          address: string | null
+          created_at: string
+          delivery_fee: number
+          driver_id: string | null
+          eta_at: string | null
+          id: string
+          is_demo: boolean
+          lat: number | null
+          lng: number | null
+          notes: string | null
+          status: Database["public"]["Enums"]["order_status"]
+          subtotal: number
+          total: number
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          delivery_fee?: number
+          driver_id?: string | null
+          eta_at?: string | null
+          id?: string
+          is_demo?: boolean
+          lat?: number | null
+          lng?: number | null
+          notes?: string | null
+          status?: Database["public"]["Enums"]["order_status"]
+          subtotal?: number
+          total?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          delivery_fee?: number
+          driver_id?: string | null
+          eta_at?: string | null
+          id?: string
+          is_demo?: boolean
+          lat?: number | null
+          lng?: number | null
+          notes?: string | null
+          status?: Database["public"]["Enums"]["order_status"]
+          subtotal?: number
+          total?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          default_address: string | null
+          default_lat: number | null
+          default_lng: number | null
+          full_name: string | null
+          id: string
+          phone: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          default_address?: string | null
+          default_lat?: number | null
+          default_lng?: number | null
+          full_name?: string | null
+          id: string
+          phone?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          default_address?: string | null
+          default_lat?: number | null
+          default_lng?: number | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      weekly_specials: {
+        Row: {
+          day_of_week: number
+          menu_item_id: string | null
+          note: string | null
+        }
+        Insert: {
+          day_of_week: number
+          menu_item_id?: string | null
+          note?: string | null
+        }
+        Update: {
+          day_of_week?: number
+          menu_item_id?: string | null
+          note?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "weekly_specials_menu_item_id_fkey"
+            columns: ["menu_item_id"]
+            isOneToOne: false
+            referencedRelation: "menu_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "driver" | "customer"
+      order_status:
+        | "placed"
+        | "preparing"
+        | "out_for_delivery"
+        | "delivered"
+        | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +456,15 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "driver", "customer"],
+      order_status: [
+        "placed",
+        "preparing",
+        "out_for_delivery",
+        "delivered",
+        "cancelled",
+      ],
+    },
   },
 } as const

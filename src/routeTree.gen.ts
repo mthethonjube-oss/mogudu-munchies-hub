@@ -9,38 +9,206 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SpecialsRouteImport } from './routes/specials'
+import { Route as OrdersRouteImport } from './routes/orders'
+import { Route as MenuRouteImport } from './routes/menu'
+import { Route as CartRouteImport } from './routes/cart'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AccountRouteImport } from './routes/account'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OrdersOrderIdRouteImport } from './routes/orders.$orderId'
+import { Route as MenuItemIdRouteImport } from './routes/menu.$itemId'
 
+const SpecialsRoute = SpecialsRouteImport.update({
+  id: '/specials',
+  path: '/specials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersRoute = OrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MenuRoute = MenuRouteImport.update({
+  id: '/menu',
+  path: '/menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrdersOrderIdRoute = OrdersOrderIdRouteImport.update({
+  id: '/$orderId',
+  path: '/$orderId',
+  getParentRoute: () => OrdersRoute,
+} as any)
+const MenuItemIdRoute = MenuItemIdRouteImport.update({
+  id: '/$itemId',
+  path: '/$itemId',
+  getParentRoute: () => MenuRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/admin': typeof AdminRoute
+  '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
+  '/menu': typeof MenuRouteWithChildren
+  '/orders': typeof OrdersRouteWithChildren
+  '/specials': typeof SpecialsRoute
+  '/menu/$itemId': typeof MenuItemIdRoute
+  '/orders/$orderId': typeof OrdersOrderIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/admin': typeof AdminRoute
+  '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
+  '/menu': typeof MenuRouteWithChildren
+  '/orders': typeof OrdersRouteWithChildren
+  '/specials': typeof SpecialsRoute
+  '/menu/$itemId': typeof MenuItemIdRoute
+  '/orders/$orderId': typeof OrdersOrderIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/admin': typeof AdminRoute
+  '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
+  '/menu': typeof MenuRouteWithChildren
+  '/orders': typeof OrdersRouteWithChildren
+  '/specials': typeof SpecialsRoute
+  '/menu/$itemId': typeof MenuItemIdRoute
+  '/orders/$orderId': typeof OrdersOrderIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/account'
+    | '/admin'
+    | '/auth'
+    | '/cart'
+    | '/menu'
+    | '/orders'
+    | '/specials'
+    | '/menu/$itemId'
+    | '/orders/$orderId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/account'
+    | '/admin'
+    | '/auth'
+    | '/cart'
+    | '/menu'
+    | '/orders'
+    | '/specials'
+    | '/menu/$itemId'
+    | '/orders/$orderId'
+  id:
+    | '__root__'
+    | '/'
+    | '/account'
+    | '/admin'
+    | '/auth'
+    | '/cart'
+    | '/menu'
+    | '/orders'
+    | '/specials'
+    | '/menu/$itemId'
+    | '/orders/$orderId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccountRoute: typeof AccountRoute
+  AdminRoute: typeof AdminRoute
+  AuthRoute: typeof AuthRoute
+  CartRoute: typeof CartRoute
+  MenuRoute: typeof MenuRouteWithChildren
+  OrdersRoute: typeof OrdersRouteWithChildren
+  SpecialsRoute: typeof SpecialsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/specials': {
+      id: '/specials'
+      path: '/specials'
+      fullPath: '/specials'
+      preLoaderRoute: typeof SpecialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders': {
+      id: '/orders'
+      path: '/orders'
+      fullPath: '/orders'
+      preLoaderRoute: typeof OrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/menu': {
+      id: '/menu'
+      path: '/menu'
+      fullPath: '/menu'
+      preLoaderRoute: typeof MenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +216,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/orders/$orderId': {
+      id: '/orders/$orderId'
+      path: '/$orderId'
+      fullPath: '/orders/$orderId'
+      preLoaderRoute: typeof OrdersOrderIdRouteImport
+      parentRoute: typeof OrdersRoute
+    }
+    '/menu/$itemId': {
+      id: '/menu/$itemId'
+      path: '/$itemId'
+      fullPath: '/menu/$itemId'
+      preLoaderRoute: typeof MenuItemIdRouteImport
+      parentRoute: typeof MenuRoute
+    }
   }
 }
 
+interface MenuRouteChildren {
+  MenuItemIdRoute: typeof MenuItemIdRoute
+}
+
+const MenuRouteChildren: MenuRouteChildren = {
+  MenuItemIdRoute: MenuItemIdRoute,
+}
+
+const MenuRouteWithChildren = MenuRoute._addFileChildren(MenuRouteChildren)
+
+interface OrdersRouteChildren {
+  OrdersOrderIdRoute: typeof OrdersOrderIdRoute
+}
+
+const OrdersRouteChildren: OrdersRouteChildren = {
+  OrdersOrderIdRoute: OrdersOrderIdRoute,
+}
+
+const OrdersRouteWithChildren =
+  OrdersRoute._addFileChildren(OrdersRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccountRoute: AccountRoute,
+  AdminRoute: AdminRoute,
+  AuthRoute: AuthRoute,
+  CartRoute: CartRoute,
+  MenuRoute: MenuRouteWithChildren,
+  OrdersRoute: OrdersRouteWithChildren,
+  SpecialsRoute: SpecialsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
