@@ -10,7 +10,7 @@ import { placeOrder } from "@/lib/orders.functions";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/cart")({
-  head: () => ({ meta: [{ title: "Cart — Mogudu Monday" }] }),
+  head: () => ({ meta: [{ title: "Cart — Mthetho's Cultural Food" }] }),
   component: CartPage,
 });
 

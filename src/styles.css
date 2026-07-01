@@ -45,7 +45,7 @@
 
 :root {
   --radius: 0.75rem;
-  /* Mogudu Monday — black, gold, ivory */
+  /* Mthetho's Cultural Food — black, gold, ivory */
   --background: oklch(0.16 0.005 60);          /* near-black warm */
   --foreground: oklch(0.96 0.012 80);          /* ivory */
   --card: oklch(0.20 0.008 60);

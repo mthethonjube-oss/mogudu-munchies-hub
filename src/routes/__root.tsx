@@ -23,6 +23,7 @@ import { CartProvider } from "@/lib/cart";
 import { AuthProvider } from "@/lib/auth";
 import { Header, MobileNav, Footer } from "@/components/site-chrome";
 import { NotificationsListener } from "@/components/notifications-listener";
+import { ChatbotWidget } from "@/components/chatbot-widget";
 
 function NotFoundComponent() {
   return (
@@ -76,14 +77,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Mogudu Monday — Authentic Flavour, Every Monday" },
+      { title: "Mthetho's Cultural Food — Authentic Flavour, Every Monday" },
       { name: "description", content: "Order authentic African mogodu, mains, kotas and combos. Browse the menu, track your delivery, and see this week's specials." },
       { name: "theme-color", content: "#0b0b0b" },
-      { property: "og:title", content: "Mogudu Monday — Authentic Flavour, Every Monday" },
+      { property: "og:title", content: "Mthetho's Cultural Food — Authentic Flavour, Every Monday" },
       { property: "og:description", content: "Order authentic African mogodu, mains, kotas and combos. Browse the menu, track your delivery, and see this week's specials." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Mogudu Monday — Authentic Flavour, Every Monday" },
+      { name: "twitter:title", content: "Mthetho's Cultural Food — Authentic Flavour, Every Monday" },
       { name: "twitter:description", content: "Order authentic African mogodu, mains, kotas and combos. Browse the menu, track your delivery, and see this week's specials." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/12151902-1efd-493c-a729-fcb963e071b0/id-preview-27f39fe5--3544cb3c-aa8d-4b4d-acb2-34bc5c30fb19.lovable.app-1782813962424.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/12151902-1efd-493c-a729-fcb963e071b0/id-preview-27f39fe5--3544cb3c-aa8d-4b4d-acb2-34bc5c30fb19.lovable.app-1782813962424.png" },
@@ -126,6 +127,7 @@ function RootComponent() {
             <Footer />
             <MobileNav />
           </div>
+          <ChatbotWidget />
           <Toaster
             theme="dark"
             position="top-center"

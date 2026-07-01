@@ -8,9 +8,9 @@ import { formatPrice } from "@/lib/format";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Mogudu Monday — Authentic Flavour, Every Monday" },
+      { title: "Mthetho's Cultural Food — Authentic Flavour, Every Monday" },
       { name: "description", content: "Authentic African mogodu, mains, kotas and combos delivered fresh. Browse the menu and order in minutes." },
-      { property: "og:title", content: "Mogudu Monday — Authentic Flavour, Every Monday" },
+      { property: "og:title", content: "Mthetho's Cultural Food — Authentic Flavour, Every Monday" },
       { property: "og:description", content: "Authentic African mogodu, mains, kotas and combos delivered fresh." },
     ],
   }),

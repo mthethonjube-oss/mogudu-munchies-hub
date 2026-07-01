@@ -19,6 +19,7 @@ import { Route as AccountRouteImport } from './routes/account'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OrdersOrderIdRouteImport } from './routes/orders.$orderId'
 import { Route as MenuItemIdRouteImport } from './routes/menu.$itemId'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
 
 const SpecialsRoute = SpecialsRouteImport.update({
   id: '/specials',
@@ -70,6 +71,11 @@ const MenuItemIdRoute = MenuItemIdRouteImport.update({
   path: '/$itemId',
   getParentRoute: () => MenuRoute,
 } as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/menu': typeof MenuRouteWithChildren
   '/orders': typeof OrdersRouteWithChildren
   '/specials': typeof SpecialsRoute
+  '/api/chat': typeof ApiChatRoute
   '/menu/$itemId': typeof MenuItemIdRoute
   '/orders/$orderId': typeof OrdersOrderIdRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/menu': typeof MenuRouteWithChildren
   '/orders': typeof OrdersRouteWithChildren
   '/specials': typeof SpecialsRoute
+  '/api/chat': typeof ApiChatRoute
   '/menu/$itemId': typeof MenuItemIdRoute
   '/orders/$orderId': typeof OrdersOrderIdRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/menu': typeof MenuRouteWithChildren
   '/orders': typeof OrdersRouteWithChildren
   '/specials': typeof SpecialsRoute
+  '/api/chat': typeof ApiChatRoute
   '/menu/$itemId': typeof MenuItemIdRoute
   '/orders/$orderId': typeof OrdersOrderIdRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/menu'
     | '/orders'
     | '/specials'
+    | '/api/chat'
     | '/menu/$itemId'
     | '/orders/$orderId'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/menu'
     | '/orders'
     | '/specials'
+    | '/api/chat'
     | '/menu/$itemId'
     | '/orders/$orderId'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/menu'
     | '/orders'
     | '/specials'
+    | '/api/chat'
     | '/menu/$itemId'
     | '/orders/$orderId'
   fileRoutesById: FileRoutesById
@@ -156,6 +168,7 @@ export interface RootRouteChildren {
   MenuRoute: typeof MenuRouteWithChildren
   OrdersRoute: typeof OrdersRouteWithChildren
   SpecialsRoute: typeof SpecialsRoute
+  ApiChatRoute: typeof ApiChatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -230,6 +243,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MenuItemIdRouteImport
       parentRoute: typeof MenuRoute
     }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -263,17 +283,8 @@ const rootRouteChildren: RootRouteChildren = {
   MenuRoute: MenuRouteWithChildren,
   OrdersRoute: OrdersRouteWithChildren,
   SpecialsRoute: SpecialsRoute,
+  ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

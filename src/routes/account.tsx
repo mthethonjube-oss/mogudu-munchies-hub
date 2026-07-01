@@ -6,7 +6,7 @@ import { Bell, LogOut, User } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/account")({
-  head: () => ({ meta: [{ title: "Account — Mogudu Monday" }] }),
+  head: () => ({ meta: [{ title: "Account — Mthetho's Cultural Food" }] }),
   component: Account,
 });
 

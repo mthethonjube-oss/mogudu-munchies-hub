@@ -12,7 +12,7 @@ const search = z.object({ redirect: z.string().optional() });
 
 export const Route = createFileRoute("/auth")({
   validateSearch: search,
-  head: () => ({ meta: [{ title: "Sign in — Mogudu Monday" }] }),
+  head: () => ({ meta: [{ title: "Sign in — Mthetho's Cultural Food" }] }),
   component: AuthPage,
 });
 
@@ -96,7 +96,7 @@ function AuthPage() {
         </form>
 
         <div className="mt-6 text-center text-sm text-muted-foreground">
-          {mode === "signin" ? "New to Mogudu Monday? " : "Already have an account? "}
+          {mode === "signin" ? "New to Mthetho's Cultural Food? " : "Already have an account? "}
           <button onClick={() => setMode(mode === "signin" ? "signup" : "signin")} className="text-gold hover:underline">
             {mode === "signin" ? "Create account" : "Sign in"}
           </button>

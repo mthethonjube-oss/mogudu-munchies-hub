@@ -11,9 +11,9 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/menu")({
   head: () => ({
     meta: [
-      { title: "Menu — Mogudu Monday" },
+      { title: "Menu — Mthetho's Cultural Food" },
       { name: "description", content: "Browse mogodu specials, mains, kotas, sides and drinks. Order online in minutes." },
-      { property: "og:title", content: "Menu — Mogudu Monday" },
+      { property: "og:title", content: "Menu — Mthetho's Cultural Food" },
       { property: "og:description", content: "Browse mogodu specials, mains, kotas, sides and drinks." },
     ],
   }),
