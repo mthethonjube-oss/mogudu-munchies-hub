@@ -152,14 +152,9 @@ export function ChatbotWidget() {
             </Conversation>
 
             <PromptInput onSubmit={handleSubmit} className="border-t border-border/60">
-              <PromptInputTextarea
-                ref={textareaRef}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about the menu, specials, orders…"
-              />
+              <PromptInputTextarea placeholder="Ask about the menu, specials, orders…" />
               <PromptInputFooter className="justify-end">
-                <PromptInputSubmit status={status} disabled={!input.trim() || busy} />
+                <PromptInputSubmit status={status} disabled={busy} />
               </PromptInputFooter>
             </PromptInput>
           </motion.div>
