@@ -38,9 +38,7 @@ const WELCOME: UIMessage = {
 
 export function ChatbotWidget() {
   const [open, setOpen] = useState(false);
-  const [input, setInput] = useState("");
   const [initial, setInitial] = useState<UIMessage[] | null>(null);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     const stored = loadMessages();
@@ -63,17 +61,11 @@ export function ChatbotWidget() {
     }
   }, [messages, initial]);
 
-  useEffect(() => {
-    if (open) setTimeout(() => textareaRef.current?.focus(), 100);
-  }, [open, messages.length]);
-
   const busy = status === "submitted" || status === "streaming";
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const text = input.trim();
+  const handleSubmit = (message: { text: string }) => {
+    const text = message.text.trim();
     if (!text || busy) return;
-    setInput("");
     sendMessage({ text });
   };
 
