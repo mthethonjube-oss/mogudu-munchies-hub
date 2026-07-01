@@ -6,7 +6,7 @@ import { formatPrice, STATUS_LABELS } from "@/lib/format";
 import { useEffect } from "react";
 
 export const Route = createFileRoute("/orders")({
-  head: () => ({ meta: [{ title: "My Orders — Mogudu Monday" }] }),
+  head: () => ({ meta: [{ title: "My Orders — Mthetho's Cultural Food" }] }),
   component: Orders,
 });
 

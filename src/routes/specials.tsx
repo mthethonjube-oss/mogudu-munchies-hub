@@ -7,9 +7,9 @@ import { formatPrice } from "@/lib/format";
 export const Route = createFileRoute("/specials")({
   head: () => ({
     meta: [
-      { title: "Weekly Specials — Mogudu Monday" },
-      { name: "description", content: "A different special every day. Mogudu Mondays, Bunny Chow Tuesdays, Oxtail Fridays and more." },
-      { property: "og:title", content: "Weekly Specials — Mogudu Monday" },
+      { title: "Weekly Specials — Mthetho's Cultural Food" },
+      { name: "description", content: "A different special every day. Mthetho's Cultural Foods, Bunny Chow Tuesdays, Oxtail Fridays and more." },
+      { property: "og:title", content: "Weekly Specials — Mthetho's Cultural Food" },
       { property: "og:description", content: "A different special every day of the week." },
     ],
   }),
@@ -37,7 +37,7 @@ function Specials() {
       <header className="mb-10 text-center">
         <div className="text-xs uppercase tracking-widest text-gold">The week ahead</div>
         <h1 className="mt-2 font-display text-4xl sm:text-6xl">A different <span className="gold-text italic">special</span> every day</h1>
-        <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">From Mogudu Mondays to Oxtail Fridays — see what's cooking and plan your week.</p>
+        <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">From Mthetho's Cultural Foods to Oxtail Fridays — see what's cooking and plan your week.</p>
       </header>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

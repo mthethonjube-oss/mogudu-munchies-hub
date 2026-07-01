@@ -14,7 +14,7 @@ import { updateOrderStatus } from "@/lib/orders.functions";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin")({
-  head: () => ({ meta: [{ title: "Admin — Mogudu Monday" }] }),
+  head: () => ({ meta: [{ title: "Admin — Mthetho's Cultural Food" }] }),
   component: Admin,
 });
 

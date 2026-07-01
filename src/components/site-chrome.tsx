@@ -141,12 +141,12 @@ export function Footer() {
         </div>
         <div>
           <div className="mb-2 text-foreground">Contact</div>
-          <p>hello@mogudumonday.co.za</p>
+          <p>hello@mthethoscultural.co.za</p>
           <p>+27 11 555 0000</p>
         </div>
       </div>
       <div className="border-t border-border/60 py-4 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} Mogudu Monday
+        © {new Date().getFullYear()} Mthetho's Cultural Food
       </div>
     </footer>
   );
