@@ -23,6 +23,7 @@ import { CartProvider } from "@/lib/cart";
 import { AuthProvider } from "@/lib/auth";
 import { Header, MobileNav, Footer } from "@/components/site-chrome";
 import { NotificationsListener } from "@/components/notifications-listener";
+import { ChatbotWidget } from "@/components/chatbot-widget";
 
 function NotFoundComponent() {
   return (
