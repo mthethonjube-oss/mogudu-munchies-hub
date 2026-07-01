@@ -127,6 +127,7 @@ function RootComponent() {
             <Footer />
             <MobileNav />
           </div>
+          <ChatbotWidget />
           <Toaster
             theme="dark"
             position="top-center"
